@@ -44,8 +44,7 @@ This widget is an attractive Steampunk VB6 widget for your desktop. Functional a
  are new VB6 widgets with more functionality and then hopefully, conversion of 
  each to RADBasic/TwinBasic for future-proofing and 64bit-ness. 
 
-![dieselpunk-volume-menu001](https://github.com/yereverluvinunclebert/Steampunk-Volume-Control-VB6/assets/2788342/ad99c70c-2c2d-4bb8-96fb-06f360c5e89c)
-
+![steampunk-volume-menu001](https://github.com/yereverluvinunclebert/Steampunk-Volume-Control-VB6/assets/2788342/b8a85163-38e5-4dad-930b-70d1d9b475a0)
 
  This utility is one of a set of steampunk and dieselpunk widgets. That you can 
  find here on Deviantart: https://www.deviantart.com/yereverluvinuncleber/gallery
