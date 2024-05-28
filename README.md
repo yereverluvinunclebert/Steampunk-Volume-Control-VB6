@@ -16,7 +16,7 @@
  
 This widget is an attractive Steampunk VB6 widget for your desktop. Functional and gorgeous at the same time. The graphics are my own, it is almost all my code with some help from the chaps at VBForums (credits given). This Widget is a moveable widget that you can move anywhere around the desktop as you require.
  
-![Steampunkpunk-volume-400](https://github.com/yereverluvinunclebert/Steampunk-Volume-Control-VB6/assets/2788342/61063cce-eeb7-4552-ac96-ab2a192eb14f)
+![volume-large](https://github.com/yereverluvinunclebert/Steampunk-Volume-Control-VB6/assets/2788342/20f19f53-4508-4f4c-9a7f-a027fb340740)
 
  This widget can be increased in size, animation speed can be changed, 
  opacity/transparency may be set as to the users discretion. The widget can 
@@ -35,7 +35,7 @@ This widget is an attractive Steampunk VB6 widget for your desktop. Functional a
  This version was developed on Windows 10 64bit using 32 bit VisualBasic 6 as a FOSS 
  project creating a WoW64 widget for the desktop. 
  
-![Steampunk-volume-help](https://github.com/yereverluvinunclebert/Steampunk-Volume-Control-VB6/assets/2788342/d2546c52-de2a-4b0e-b6eb-e21e3bd836b3)
+![volume-help](https://github.com/yereverluvinunclebert/Steampunk-Volume-Control-VB6/assets/2788342/644c9125-ec64-46c2-9076-6b282d9c2779)
 
  It is open source to allow easy configuration, bug-fixing, enhancement and 
  community contribution towards free-and-useful VB6 utilities that can be created
@@ -44,9 +44,9 @@ This widget is an attractive Steampunk VB6 widget for your desktop. Functional a
  are new VB6 widgets with more functionality and then hopefully, conversion of 
  each to RADBasic/TwinBasic for future-proofing and 64bit-ness. 
 
-![dieselpunk-volume-menu001](https://github.com/yereverluvinunclebert/Steampunk-Volume-Control-VB6/assets/2788342/20284008-b0a6-4ed9-bef4-4a2d954b221b)
+![dieselpunk-volume-menu001](https://github.com/yereverluvinunclebert/Steampunk-Volume-Control-VB6/assets/2788342/ad99c70c-2c2d-4bb8-96fb-06f360c5e89c)
 
- 
+
  This utility is one of a set of steampunk and dieselpunk widgets. That you can 
  find here on Deviantart: https://www.deviantart.com/yereverluvinuncleber/gallery
  
@@ -73,8 +73,9 @@ This widget is an attractive Steampunk VB6 widget for your desktop. Functional a
 	Open File common dialog code without dependent OCX - http://forums.codeguru.com/member.php?92278-rxbagain  
 	VBAdvance  
 
-  
-![Steampunk-volume](https://github.com/yereverluvinunclebert/Steampunk-Volume-Control-VB6/assets/2788342/026b1722-7bfa-429f-ab4a-1dae5f8f9f18)
+  ![volume-help2](https://github.com/yereverluvinunclebert/Steampunk-Volume-Control-VB6/assets/2788342/512cc8a6-ead1-46c4-96c4-7a7a01cfd3c1)
+
+
  
  Tested on :
  
