@@ -16,7 +16,7 @@
  
 This widget is an attractive Steampunk VB6 widget for your desktop. Functional and gorgeous at the same time. The graphics are my own, it is almost all my code with some help from the chaps at VBForums (credits given). This Widget is a moveable widget that you can move anywhere around the desktop as you require.
  
-![volume-800](https://github.com/yereverluvinunclebert/Steampunk-Volume-Control-VB6/assets/2788342/ae172abc-881a-42ee-ac5d-4fa0fc2b9197)
+![volume-400](https://github.com/yereverluvinunclebert/Steampunk-Volume-Control-VB6/assets/2788342/3cf14ff1-5290-4eb9-ae0c-8d5029f75a7e)
 
  This widget can be increased in size, animation speed can be changed, 
  opacity/transparency may be set as to the users discretion. The widget can 
