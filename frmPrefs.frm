@@ -3062,9 +3062,9 @@ Private Sub btnSave_Click()
     gblDefaultEditor = txtDefaultEditor.Text
             
     If gblStartup = "1" Then
-        Call savestring(HKEY_CURRENT_USER, "SOFTWARE\Microsoft\Windows\CurrentVersion\Run", "VolumeControlWidget", """" & App.path & "\" & "Steampunk Volume Control.exe""")
+        Call savestring(HKEY_CURRENT_USER, "SOFTWARE\Microsoft\Windows\CurrentVersion\Run", "SteampunkVolumeControl", """" & App.path & "\" & "Steampunk Volume Control.exe""")
     Else
-        Call savestring(HKEY_CURRENT_USER, "SOFTWARE\Microsoft\Windows\CurrentVersion\Run", "VolumeControlWidget", vbNullString)
+        Call savestring(HKEY_CURRENT_USER, "SOFTWARE\Microsoft\Windows\CurrentVersion\Run", "SteampunkVolumeControl", vbNullString)
     End If
 
     ' save the values from the general tab
