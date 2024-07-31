@@ -456,7 +456,7 @@ Public Sub mnuLatest_Click()
     answer = msgBoxA(answerMsg, vbExclamation + vbYesNo, "Request to Upgrade", True, "mnuLatestClick")
 
     If answer = vbYes Then
-        Call ShellExecute(Me.hwnd, "Open", "https://github.com/yereverluvinunclebert/Steampunk Volume Control VB6", vbNullString, App.path, 1)
+        Call ShellExecute(Me.hwnd, "Open", "https://github.com/yereverluvinunclebert/steampunk-volume-control-VB6", vbNullString, App.path, 1)
     End If
 
 
