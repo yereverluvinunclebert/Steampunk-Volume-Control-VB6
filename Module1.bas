@@ -2211,7 +2211,8 @@ Public Sub reloadWidget()
     
     ' this will call the routines as called by sub main() and initialise the program and RELOAD the RC6 forms.
     Call mainRoutine(True) ' sets the restart flag to avoid repriming the RC6 message pump.
-
+    fVolume.resetAudio = True
+    
     On Error GoTo 0
     Exit Sub
 

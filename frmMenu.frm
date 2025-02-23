@@ -68,8 +68,14 @@ Begin VB.Form menuForm
       Begin VB.Menu blank4 
          Caption         =   ""
       End
+      Begin VB.Menu mnuReconnect 
+         Caption         =   "Reconnect Audio Hardware"
+      End
       Begin VB.Menu menuReload 
-         Caption         =   "Reload Widget (F5)"
+         Caption         =   "Reload Widget (F5 or Shift+F5 for hard restart)"
+      End
+      Begin VB.Menu blank5 
+         Caption         =   ""
       End
       Begin VB.Menu mnuEditWidget 
          Caption         =   "Edit Widget using..."
@@ -140,11 +146,18 @@ End Sub
 '---------------------------------------------------------------------------------------
 '
 Private Sub menuReload_Click()
+    Dim answer As VbMsgBoxResult: answer = vbNo
+    Dim answerMsg As String: answerMsg = vbNullString
 
     On Error GoTo menuReload_Click_Error
     
-    If CTRL_1 = True Then
-        CTRL_1 = False
+    answer = vbYes
+    answerMsg = "Performing a hard restart now, press OK."
+        
+    If SHIFT_1 = True Then
+        SHIFT_1 = False
+        answer = msgBoxA(answerMsg, vbExclamation + vbOK, "Performing a hard restart", True, "menuReloadClick")
+        
         Call hardRestart
     Else
         Call reloadWidget
@@ -491,6 +504,26 @@ mnuLicence_Click_Error:
 End Sub
 
 
+
+'---------------------------------------------------------------------------------------
+' Procedure : mnuReconnect_Click
+' Author    : beededea
+' Date      : 22/02/2025
+' Purpose   :
+'---------------------------------------------------------------------------------------
+'
+Private Sub mnuReconnect_Click()
+   On Error GoTo mnuReconnect_Click_Error
+
+    fVolume.resetAudio = True
+
+   On Error GoTo 0
+   Exit Sub
+
+mnuReconnect_Click_Error:
+
+    MsgBox "Error " & Err.Number & " (" & Err.Description & ") in procedure mnuReconnect_Click of Form menuForm"
+End Sub
 
 '---------------------------------------------------------------------------------------
 ' Procedure : mnuSupport_Click
