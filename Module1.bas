@@ -2152,6 +2152,17 @@ End Sub
 Public Sub unloadAllForms(ByVal endItAll As Boolean)
     
    On Error GoTo unloadAllForms_Error
+   
+    ' stop all VB6 timers in the timer form
+    frmTimer.revealWidgetTimer.Enabled = False
+    frmTimer.rotationTimer.Enabled = False
+    frmTimer.settingsTimer.Enabled = False
+    frmTimer.sleepTimer.Enabled = False
+    
+    ' stop all VB6 timers in the prefs form
+    
+    widgetPrefs.themeTimer.Enabled = False
+    widgetPrefs.positionTimer.Enabled = False
 
     'unload the RC6 widgets on the RC6 forms first
     
