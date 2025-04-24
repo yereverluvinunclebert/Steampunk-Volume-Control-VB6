@@ -212,6 +212,7 @@ End Sub
 Private Sub sleepTimer_Timer()
     Dim strTimeNow As Date: strTimeNow = #1/1/2000 12:00:00 PM#  'set a variable to compare for the NOW time
     Dim lngSecondsGap As Long: lngSecondsGap = 0  ' set a variable for the difference in time
+    
     Static strTimeThen As Date
     
     On Error GoTo sleepTimer_Timer_Error
@@ -222,16 +223,15 @@ Private Sub sleepTimer_Timer()
     strTimeNow = Now()
     
     lngSecondsGap = DateDiff("s", strTimeThen, strTimeNow)
-    strTimeThen = Now()
 
     If lngSecondsGap > 60 Then
-        'MsgBox "System has just woken up from a sleep" ' awoken, awake
-        fVolume.volumeForm.Refresh
         
+        fVolume.volumeForm.Refresh
         fVolume.resetAudio = True
         
-        'MessageBox Me.hwnd, "System has just woken up from a sleep - animatedIconsRaised =" & animatedIconsRaised, "SteamyDock Information Message", vbOKOnly
     End If
+    
+    strTimeThen = Now()
     
     sleepTimer.Enabled = True
 
