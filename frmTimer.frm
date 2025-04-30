@@ -11,6 +11,13 @@ Begin VB.Form frmTimer
    ScaleWidth      =   4680
    StartUpPosition =   3  'Windows Default
    Visible         =   0   'False
+   Begin VB.Timer audioResetTimer 
+      Enabled         =   0   'False
+      Interval        =   60000
+      Left            =   105
+      Tag             =   "stores and compares the last time to see if the PC has slept"
+      Top             =   2100
+   End
    Begin VB.Timer sleepTimer 
       Interval        =   3000
       Left            =   90
@@ -36,6 +43,14 @@ Begin VB.Form frmTimer
       Left            =   90
       Top             =   135
    End
+   Begin VB.Label Label5 
+      Caption         =   "audioResetTimer for regularly making a connection to the audio"
+      Height          =   195
+      Left            =   735
+      TabIndex        =   5
+      Top             =   2220
+      Width           =   3645
+   End
    Begin VB.Label Label4 
       Caption         =   "sleeptimer for testing awake from sleep"
       Height          =   195
@@ -49,7 +64,7 @@ Begin VB.Form frmTimer
       Height          =   435
       Left            =   240
       TabIndex        =   3
-      Top             =   2400
+      Top             =   2580
       Width           =   4125
    End
    Begin VB.Label Label2 
@@ -86,7 +101,37 @@ Attribute VB_Exposed = False
 Option Explicit
 
 
+'---------------------------------------------------------------------------------------
+' Procedure : audioResetTimer_Timer
+' Author    : beededea
+' Date      : 30/04/2025
+' Purpose   : Some physical volume control tools such as the Soundblaster SXFi hijack the audio after a SXFi driver hang/crash,
+'             causing the device to wrest away audio control once they restart (buggy devices).
+'             This timer reconnects to the audio system every three minutes to ensure the volume control is available and stays connected
+'---------------------------------------------------------------------------------------
+'
+Private Sub audioResetTimer_Timer()
+    Static audioResetTimerCount As Integer
 
+    On Error GoTo audioResetTimer_Timer_Error
+    
+    If gblAutoReconnect = "0" Then Exit Sub
+    
+    audioResetTimerCount = audioResetTimerCount + 1
+    If audioResetTimerCount >= 3 Then
+        fVolume.volumeForm.Refresh
+        fVolume.resetAudio = True
+        audioResetTimerCount = 0
+        'MsgBox "steampunk vol. control - audio reset"
+    End If
+
+   On Error GoTo 0
+   Exit Sub
+
+audioResetTimer_Timer_Error:
+
+    MsgBox "Error " & Err.Number & " (" & Err.Description & ") in procedure audioResetTimer_Timer of Form frmTimer"
+End Sub
 
 
 
@@ -204,9 +249,12 @@ End Sub
 ' Procedure : sleepTimer_Timer
 ' Author    : beededea
 ' Date      : 21/04/2021
-' Purpose   : timer that stores the last time
-' if the current time is greater than the last time stored by more than 30 seconds we can assume the system
-' has been sent to sleep, if the two are significantly different then we reorganise the dock
+' Purpose   : If the current time is greater than the last time stored by more than 30 seconds we can assume the system
+'             has been sent to sleep, and has just woken up. This timer reconnects to the audio system when the system wakes from
+'             sleep to ensure the volume control is available and stays connected
+'
+' Background: Some physical volume control tools such as the Soundblaster SXFi hijack the audio after a SXFi driver restars from sleep,
+'             causing the device to wrest away audio control from the volume widget (SXFi = buggy device).
 '---------------------------------------------------------------------------------------
 '
 Private Sub sleepTimer_Timer()

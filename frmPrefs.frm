@@ -17,7 +17,7 @@ Begin VB.Form widgetPrefs
    Begin VB.Frame fraGeneral 
       Caption         =   "General"
       ForeColor       =   &H80000008&
-      Height          =   3570
+      Height          =   5160
       Left            =   75
       TabIndex        =   50
       Top             =   1200
@@ -25,11 +25,20 @@ Begin VB.Form widgetPrefs
       Width           =   7995
       Begin VB.Frame fraGeneralInner 
          BorderStyle     =   0  'None
-         Height          =   3165
+         Height          =   4305
          Left            =   465
          TabIndex        =   51
          Top             =   300
          Width           =   6750
+         Begin VB.CheckBox chkAutoReconnect 
+            Caption         =   "Enable a regular three minute timer to reconnect to audio"
+            Height          =   465
+            Left            =   2010
+            TabIndex        =   155
+            ToolTipText     =   "Check this box to enable the automatic start of the program when Windows is started."
+            Top             =   2295
+            Width           =   4590
+         End
          Begin VB.CheckBox chkNumericDisplay 
             Caption         =   "Toggle to enable/disable"
             Height          =   465
@@ -53,8 +62,27 @@ Begin VB.Form widgetPrefs
             Left            =   1995
             TabIndex        =   92
             ToolTipText     =   "Check this box to enable the automatic start of the program when Windows is started."
-            Top             =   2310
+            Top             =   3765
             Width           =   4590
+         End
+         Begin VB.Label lblGeneral 
+            Caption         =   $"frmPrefs.frx":25CA
+            Height          =   1035
+            Index           =   5
+            Left            =   1995
+            TabIndex        =   157
+            Top             =   2775
+            Width           =   4425
+         End
+         Begin VB.Label lblGeneral 
+            Caption         =   "Auto Re-connect :"
+            Height          =   375
+            Index           =   4
+            Left            =   510
+            TabIndex        =   156
+            Tag             =   "lblRefreshInterval"
+            Top             =   2415
+            Width           =   1740
          End
          Begin VB.Label lblGeneral 
             Caption         =   "When checked this box enables the numeric display that indicates the current audio volume."
@@ -101,7 +129,7 @@ Begin VB.Form widgetPrefs
             Left            =   960
             TabIndex        =   93
             Tag             =   "lblRefreshInterval"
-            Top             =   2430
+            Top             =   3885
             Width           =   1740
          End
       End
@@ -298,7 +326,7 @@ Begin VB.Form widgetPrefs
             Width           =   2115
          End
          Begin VB.Label lblPosition 
-            Caption         =   $"frmPrefs.frx":25CA
+            Caption         =   $"frmPrefs.frx":26BB
             Height          =   3435
             Index           =   12
             Left            =   5145
@@ -318,7 +346,7 @@ Begin VB.Form widgetPrefs
             Width           =   2040
          End
          Begin VB.Label lblPosition 
-            Caption         =   $"frmPrefs.frx":279C
+            Caption         =   $"frmPrefs.frx":288D
             Height          =   705
             Index           =   10
             Left            =   2250
@@ -338,7 +366,7 @@ Begin VB.Form widgetPrefs
             Width           =   2355
          End
          Begin VB.Label lblPosition 
-            Caption         =   $"frmPrefs.frx":283B
+            Caption         =   $"frmPrefs.frx":292C
             Height          =   3045
             Index           =   6
             Left            =   2265
@@ -377,7 +405,7 @@ Begin VB.Form widgetPrefs
       Begin VB.Image imgDevelopment 
          Height          =   600
          Left            =   150
-         Picture         =   "frmPrefs.frx":29E0
+         Picture         =   "frmPrefs.frx":2AD1
          Stretch         =   -1  'True
          Top             =   225
          Width           =   600
@@ -385,7 +413,7 @@ Begin VB.Form widgetPrefs
       Begin VB.Image imgDevelopmentClicked 
          Height          =   600
          Left            =   160
-         Picture         =   "frmPrefs.frx":2F98
+         Picture         =   "frmPrefs.frx":3089
          Stretch         =   -1  'True
          Top             =   225
          Width           =   600
@@ -425,7 +453,7 @@ Begin VB.Form widgetPrefs
       Begin VB.Image imgAbout 
          Height          =   600
          Left            =   160
-         Picture         =   "frmPrefs.frx":331E
+         Picture         =   "frmPrefs.frx":340F
          Stretch         =   -1  'True
          Top             =   225
          Width           =   600
@@ -433,7 +461,7 @@ Begin VB.Form widgetPrefs
       Begin VB.Image imgAboutClicked 
          Height          =   600
          Left            =   160
-         Picture         =   "frmPrefs.frx":38A6
+         Picture         =   "frmPrefs.frx":3997
          Stretch         =   -1  'True
          Top             =   225
          Width           =   600
@@ -458,7 +486,7 @@ Begin VB.Form widgetPrefs
       Begin VB.Image imgConfig 
          Height          =   600
          Left            =   165
-         Picture         =   "frmPrefs.frx":3D91
+         Picture         =   "frmPrefs.frx":3E82
          Stretch         =   -1  'True
          Top             =   225
          Width           =   600
@@ -466,7 +494,7 @@ Begin VB.Form widgetPrefs
       Begin VB.Image imgConfigClicked 
          Height          =   600
          Left            =   165
-         Picture         =   "frmPrefs.frx":4370
+         Picture         =   "frmPrefs.frx":4461
          Stretch         =   -1  'True
          Top             =   225
          Width           =   600
@@ -491,7 +519,7 @@ Begin VB.Form widgetPrefs
       Begin VB.Image imgPosition 
          Height          =   600
          Left            =   160
-         Picture         =   "frmPrefs.frx":4875
+         Picture         =   "frmPrefs.frx":4966
          Stretch         =   -1  'True
          Top             =   225
          Width           =   600
@@ -499,7 +527,7 @@ Begin VB.Form widgetPrefs
       Begin VB.Image imgPositionClicked 
          Height          =   600
          Left            =   160
-         Picture         =   "frmPrefs.frx":4E46
+         Picture         =   "frmPrefs.frx":4F37
          Stretch         =   -1  'True
          Top             =   225
          Width           =   600
@@ -544,7 +572,7 @@ Begin VB.Form widgetPrefs
       Begin VB.Image imgSounds 
          Height          =   600
          Left            =   160
-         Picture         =   "frmPrefs.frx":51E4
+         Picture         =   "frmPrefs.frx":52D5
          Stretch         =   -1  'True
          Top             =   225
          Width           =   600
@@ -552,7 +580,7 @@ Begin VB.Form widgetPrefs
       Begin VB.Image imgSoundsClicked 
          Height          =   600
          Left            =   160
-         Picture         =   "frmPrefs.frx":57A3
+         Picture         =   "frmPrefs.frx":5894
          Stretch         =   -1  'True
          Top             =   225
          Width           =   600
@@ -592,7 +620,7 @@ Begin VB.Form widgetPrefs
       Begin VB.Image imgWindow 
          Height          =   600
          Left            =   160
-         Picture         =   "frmPrefs.frx":5C73
+         Picture         =   "frmPrefs.frx":5D64
          Stretch         =   -1  'True
          Top             =   225
          Width           =   600
@@ -600,7 +628,7 @@ Begin VB.Form widgetPrefs
       Begin VB.Image imgWindowClicked 
          Height          =   600
          Left            =   160
-         Picture         =   "frmPrefs.frx":613D
+         Picture         =   "frmPrefs.frx":622E
          Stretch         =   -1  'True
          Top             =   225
          Width           =   600
@@ -624,7 +652,7 @@ Begin VB.Form widgetPrefs
       Begin VB.Image imgFonts 
          Height          =   600
          Left            =   180
-         Picture         =   "frmPrefs.frx":64E9
+         Picture         =   "frmPrefs.frx":65DA
          Stretch         =   -1  'True
          Top             =   195
          Width           =   600
@@ -632,7 +660,7 @@ Begin VB.Form widgetPrefs
       Begin VB.Image imgFontsClicked 
          Height          =   600
          Left            =   180
-         Picture         =   "frmPrefs.frx":6A3F
+         Picture         =   "frmPrefs.frx":6B30
          Stretch         =   -1  'True
          Top             =   195
          Width           =   600
@@ -798,7 +826,7 @@ Begin VB.Form widgetPrefs
             SelStart        =   5
          End
          Begin VB.Label lblConfiguration 
-            Caption         =   $"frmPrefs.frx":6ED8
+            Caption         =   $"frmPrefs.frx":6FC9
             Height          =   930
             Index           =   0
             Left            =   1980
@@ -994,7 +1022,7 @@ Begin VB.Form widgetPrefs
             Width           =   2400
          End
          Begin VB.Label lblFontsTab 
-            Caption         =   $"frmPrefs.frx":6F8C
+            Caption         =   $"frmPrefs.frx":707D
             Height          =   1710
             Index           =   0
             Left            =   1725
@@ -1093,7 +1121,7 @@ Begin VB.Form widgetPrefs
                Width           =   720
             End
             Begin VB.Label lblWindowLevel 
-               Caption         =   $"frmPrefs.frx":70CA
+               Caption         =   $"frmPrefs.frx":71BB
                Height          =   975
                Index           =   1
                Left            =   855
@@ -1248,7 +1276,7 @@ Begin VB.Form widgetPrefs
                Width           =   3660
             End
             Begin VB.Label lblGitHub 
-               Caption         =   $"frmPrefs.frx":716D
+               Caption         =   $"frmPrefs.frx":725E
                ForeColor       =   &H8000000D&
                Height          =   915
                Left            =   1560
@@ -1258,7 +1286,7 @@ Begin VB.Form widgetPrefs
                Width           =   4935
             End
             Begin VB.Label lblDebug 
-               Caption         =   $"frmPrefs.frx":7211
+               Caption         =   $"frmPrefs.frx":7302
                Height          =   930
                Index           =   9
                Left            =   1545
@@ -1305,9 +1333,9 @@ Begin VB.Form widgetPrefs
          End
          Begin VB.ComboBox cmbDebug 
             Height          =   315
-            ItemData        =   "frmPrefs.frx":72B5
+            ItemData        =   "frmPrefs.frx":73A6
             Left            =   1530
-            List            =   "frmPrefs.frx":72B7
+            List            =   "frmPrefs.frx":73A8
             Style           =   2  'Dropdown List
             TabIndex        =   53
             ToolTipText     =   "Choose to set debug mode."
@@ -1400,7 +1428,7 @@ Begin VB.Form widgetPrefs
          MultiLine       =   -1  'True
          ScrollBars      =   2  'Vertical
          TabIndex        =   113
-         Text            =   "frmPrefs.frx":72B9
+         Text            =   "frmPrefs.frx":73AA
          Top             =   2205
          Width           =   8010
       End
@@ -1831,6 +1859,26 @@ Private gblAllowSizeChangeFlg As Boolean
 
 
 
+
+'---------------------------------------------------------------------------------------
+' Procedure : chkAutoReconnect_Click
+' Author    : beededea
+' Date      : 30/04/2025
+' Purpose   :
+'---------------------------------------------------------------------------------------
+'
+Private Sub chkAutoReconnect_Click()
+   On Error GoTo chkAutoReconnect_Click_Error
+
+    btnSave.Enabled = True ' enable the save button
+
+   On Error GoTo 0
+   Exit Sub
+
+chkAutoReconnect_Click_Error:
+
+    MsgBox "Error " & Err.Number & " (" & Err.Description & ") in procedure chkAutoReconnect_Click of Form widgetPrefs"
+End Sub
 
 ' ----------------------------------------------------------------
 ' Procedure Name: Form_Initialize
@@ -3010,6 +3058,7 @@ Private Sub btnSave_Click()
     gblWidgetFunctions = LTrim$(Str$(chkWidgetFunctions.Value))
     gblStartup = LTrim$(Str$(chkGenStartup.Value))
     gblNumericDisplay = LTrim$(Str$(chkNumericDisplay.Value))
+    gblAutoReconnect = LTrim$(Str$(chkAutoReconnect.Value))
     
     ' sounds
     gblEnableSounds = LTrim$(Str$(chkEnableSounds.Value))
@@ -3082,6 +3131,8 @@ Private Sub btnSave_Click()
         sPutINISetting "Software\SteampunkVolumeControl", "widgetFunctions", gblWidgetFunctions, gblSettingsFile
         sPutINISetting "Software\SteampunkVolumeControl", "smoothSecondHand", gblSmoothSecondHand, gblSettingsFile
         sPutINISetting "Software\SteampunkVolumeControl", "numericDisplay", gblNumericDisplay, gblSettingsFile
+        sPutINISetting "Software\SteampunkVolumeControl", "autoReconnect", gblAutoReconnect, gblSettingsFile
+        
               
         sPutINISetting "Software\SteampunkVolumeControl", "aspectHidden", gblAspectHidden, gblSettingsFile
         sPutINISetting "Software\SteampunkVolumeControl", "widgetPosition", gblWidgetPosition, gblSettingsFile
@@ -3326,6 +3377,7 @@ Private Sub adjustPrefsControls()
     chkWidgetFunctions.Value = Val(gblWidgetFunctions)
     chkGenStartup.Value = Val(gblStartup)
     chkNumericDisplay.Value = Val(gblNumericDisplay)
+    chkAutoReconnect.Value = Val(gblAutoReconnect)
     
     ' configuration tab
    
@@ -4247,9 +4299,9 @@ Public Sub setPrefsTooltips()
         imgGeneralClicked.ToolTipText = "Opens the general tab"
         lblPosition(6).ToolTipText = "Tablets only. Don't fiddle with this unless you really know what you are doing. Here you can choose whether this the volume control widget is hidden by default in either landscape or portrait mode or not at all. This option allows you to have certain widgets that do not obscure the screen in either landscape or portrait. If you accidentally set it so you can't find your widget on screen then change the setting here to NONE."
         chkGenStartup.ToolTipText = "Check this box to enable the automatic start of the program when Windows is started."
-        chkWidgetFunctions.ToolTipText = "When checked this box enables the spinning earth functionality. Any adjustment takes place instantly. "
-        chkNumericDisplay.ToolTipText = " "
-
+        chkWidgetFunctions.ToolTipText = "When checked this box enables the volume slider functionality. Any adjustment takes place instantly. "
+        chkNumericDisplay.ToolTipText = "When checked this box enables the numeric display that indicates the current audio volume."
+        chkAutoReconnect.ToolTipText = "Enable a regular three minute timer to reconnect to audio"
 
 '        sliAnimationInterval.ToolTipText = "Adjust to make the animation smooth or choppy. Any adjustment in the interval takes place instantly. Lower values are smoother but the smoother it runs the more CPU it uses."
         txtPortraitYoffset.ToolTipText = "Field to hold the vertical offset for the widget position in portrait mode."
@@ -4319,7 +4371,8 @@ Public Sub setPrefsTooltips()
         imgGeneralClicked.ToolTipText = vbNullString
         chkGenStartup.ToolTipText = vbNullString
         chkWidgetFunctions.ToolTipText = vbNullString
-        chkNumericDisplay.ToolTipText = " "
+        chkNumericDisplay.ToolTipText = vbNullString
+        chkAutoReconnect.ToolTipText = vbNullString
 
 '        sliAnimationInterval.ToolTipText = vbNullString
         txtPortraitYoffset.ToolTipText = vbNullString
@@ -5110,7 +5163,7 @@ Private Sub setframeHeights()
             Call SaveSizes(widgetPrefs, prefsControlPositions(), prefsCurrentWidth, prefsCurrentHeight)
         'End If
     Else
-        fraGeneral.Height = 3620
+        fraGeneral.Height = 5232
         fraConfig.Height = 6632
         fraSounds.Height = 1992
         fraPosition.Height = 7544

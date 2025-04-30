@@ -225,7 +225,8 @@ Private Sub initialiseGlobalVars()
     gblStartup = vbNullString
     gblWidgetFunctions = vbNullString
     gblNumericDisplay = vbNullString
-    
+    gblAutoReconnect = vbNullString
+   
     gblSmoothSecondHand = vbNullString
 
     ' config
@@ -561,6 +562,9 @@ Public Sub adjustMainControls()
     ' set the hiding time for the hiding timer, can't read the minutes from comboxbox as the prefs isn't yet open
     Call setHidingTime
 
+    ' start the regular audio reset timer
+    If gblAutoReconnect = "1" Then frmTimer.audioResetTimer.Enabled = True
+    
     If minutesToHide > 0 Then menuForm.mnuHideWidget.Caption = "Hide Widget for " & minutesToHide & " min."
     
    On Error GoTo 0
@@ -615,6 +619,7 @@ Public Sub readSettingsFile(ByVal location As String, ByVal gblSettingsFile As S
         gblStartup = fGetINISetting(location, "startup", gblSettingsFile)
         gblWidgetFunctions = fGetINISetting(location, "widgetFunctions", gblSettingsFile)
         gblNumericDisplay = fGetINISetting(location, "numericDisplay", gblSettingsFile)
+        gblAutoReconnect = fGetINISetting(location, "autoReconnect", gblSettingsFile)
         
         gblSmoothSecondHand = fGetINISetting(location, "smoothSecondHand", gblSettingsFile)
         
@@ -716,6 +721,7 @@ Public Sub validateInputs()
 '        If gblAnimationInterval = vbNullString Then gblAnimationInterval = "130"
         If gblStartup = vbNullString Then gblStartup = "1"
         If gblNumericDisplay = vbNullString Then gblNumericDisplay = "1"
+        If gblAutoReconnect = vbNullString Then gblAutoReconnect = "1"
         
         If gblSmoothSecondHand = vbNullString Then gblSmoothSecondHand = "0"
         
@@ -879,6 +885,7 @@ Private Sub configureTimers()
 
     frmTimer.rotationTimer.Enabled = True
     frmTimer.settingsTimer.Enabled = True
+    If gblAutoReconnect = "1" Then frmTimer.audioResetTimer.Enabled = True
 
     On Error GoTo 0
     Exit Sub

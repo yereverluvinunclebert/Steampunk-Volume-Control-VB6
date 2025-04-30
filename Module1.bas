@@ -290,6 +290,7 @@ Private Const VER_PLATFORM_WIN32_NT As Long = 2
 Public gblStartup As String
 Public gblWidgetFunctions As String
 Public gblNumericDisplay As String
+Public gblAutoReconnect As String
 
 'Public gblAnimationInterval As String
 Public gblSmoothSecondHand As String
@@ -2158,6 +2159,7 @@ Public Sub unloadAllForms(ByVal endItAll As Boolean)
     frmTimer.rotationTimer.Enabled = False
     frmTimer.settingsTimer.Enabled = False
     frmTimer.sleepTimer.Enabled = False
+    frmTimer.audioResetTimer.Enabled = False
     
     ' stop all VB6 timers in the prefs form
     
