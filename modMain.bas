@@ -300,8 +300,8 @@ Private Sub initialiseGlobalVars()
     windowsVer = vbNullString
     
     ' vars to obtain correct screen width (to correct VB6 bug) STARTS
-    screenTwipsPerPixelX = 0
-    screenTwipsPerPixelY = 0
+    gblScreenTwipsPerPixelX = 0
+    gblScreenTwipsPerPixelY = 0
     screenWidthTwips = 0
     screenHeightTwips = 0
     screenHeightPixels = 0

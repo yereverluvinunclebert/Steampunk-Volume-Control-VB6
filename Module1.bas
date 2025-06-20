@@ -437,7 +437,9 @@ Public tzDelta1 As Long
 
 Public msgBoxADynamicSizingFlg As Boolean
 
-
+' vars to obtain the virtual (multi-monitor) width twips
+Public gblVirtualScreenHeightTwips As Long
+Public gblVirtualScreenWidthTwips As Long
 
 
 '---------------------------------------------------------------------------------------
@@ -2024,14 +2026,17 @@ Public Sub determineScreenDimensions()
     'If debugflg = 1 Then msgbox "% sub determineScreenDimensions"
 
     ' only calling TwipsPerPixelX/Y functions once on startup
-    screenTwipsPerPixelX = fTwipsPerPixelX
-    screenTwipsPerPixelY = fTwipsPerPixelY
+    gblScreenTwipsPerPixelX = fTwipsPerPixelX
+    gblScreenTwipsPerPixelY = fTwipsPerPixelY
     
     screenHeightPixels = GetDeviceCaps(menuForm.hdc, VERTRES) ' we use the name of any form that we don't mind being loaded at this point
     screenWidthPixels = GetDeviceCaps(menuForm.hdc, HORZRES)
 
-    screenHeightTwips = screenHeightPixels * screenTwipsPerPixelY
-    screenWidthTwips = screenWidthPixels * screenTwipsPerPixelX
+    screenHeightTwips = screenHeightPixels * gblScreenTwipsPerPixelY
+    screenWidthTwips = screenWidthPixels * gblScreenTwipsPerPixelX
+    
+    gblVirtualScreenHeightTwips = fVirtualScreenHeight(False)
+    gblVirtualScreenWidthTwips = fVirtualScreenWidth(False)
     
     oldScreenHeightPixels = screenHeightPixels ' will be used to check for orientation changes
     oldScreenWidthPixels = screenWidthPixels
@@ -2168,6 +2173,11 @@ Public Sub unloadAllForms(ByVal endItAll As Boolean)
     
     widgetPrefs.themeTimer.Enabled = False
     widgetPrefs.positionTimer.Enabled = False
+    
+    ' stop RC timers for testing external changes to volume and mute
+    
+    fVolume.tmrSampleAudioVolume.Enabled = False
+    fVolume.tmrSampleAudioMute.Enabled = False
 
     'unload the RC6 widgets on the RC6 forms first
     

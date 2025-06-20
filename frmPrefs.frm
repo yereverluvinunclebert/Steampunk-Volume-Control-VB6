@@ -2029,8 +2029,8 @@ Public Sub positionPrefsMonitor()
     End If
     
     If formLeftTwips = 0 Then
-        If ((fVolume.volumeForm.Left + fVolume.volumeForm.Width) * screenTwipsPerPixelX) + 200 + widgetPrefs.Width > screenWidthTwips Then
-            widgetPrefs.Left = (fVolume.volumeForm.Left * screenTwipsPerPixelX) - (widgetPrefs.Width + 200)
+        If ((fVolume.volumeForm.Left + fVolume.volumeForm.Width) * gblScreenTwipsPerPixelX) + 200 + widgetPrefs.Width > screenWidthTwips Then
+            widgetPrefs.Left = (fVolume.volumeForm.Left * gblScreenTwipsPerPixelX) - (widgetPrefs.Width + 200)
         End If
     End If
 
@@ -2051,18 +2051,20 @@ Public Sub positionPrefsMonitor()
     If monitorCount > 1 Then Call SetFormOnMonitor(Me.hwnd, formLeftTwips / fTwipsPerPixelX, formTopTwips / fTwipsPerPixelY)
     
     ' calculate the on-screen widget position
-    If Me.Left < 0 Then
-        Me.Left = 10
+'    If Me.Left > screenWidthTwips - 2500 Then
+'        Me.Left = screenWidthTwips - 2500
+'    End If
+'    If Me.Top > screenHeightTwips - 2500 Then
+'        Me.Top = screenHeightTwips - 2500
+'    End If
+
+    If Me.Left > gblVirtualScreenWidthTwips - 2500 Then
+        Me.Left = gblVirtualScreenWidthTwips - 2500
     End If
-    If Me.Top < 0 Then
-        Me.Top = 0
+    If Me.Top > gblVirtualScreenHeightTwips - 2500 Then
+        Me.Top = gblVirtualScreenHeightTwips - 2500
     End If
-    If Me.Left > screenWidthTwips - 2500 Then
-        Me.Left = screenWidthTwips - 2500
-    End If
-    If Me.Top > screenHeightTwips - 2500 Then
-        Me.Top = screenHeightTwips - 2500
-    End If
+    
     
     On Error GoTo 0
     Exit Sub
