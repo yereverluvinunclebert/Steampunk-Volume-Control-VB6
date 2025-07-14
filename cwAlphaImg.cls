@@ -15,10 +15,10 @@ Attribute VB_Exposed = False
 ' Module    : cwAlphaImg
 ' Author    : Olaf Schmidt
 ' Date      : 05/12/2023
-' Purpose   :
+' Purpose   :  a very simple Image-Widget, which expects an ImageKey - and ensures ClickThrough-behaviour
 '---------------------------------------------------------------------------------------
 
-Option Explicit 'a very simple Image-Widget, which expects an ImageKey - and ensures ClickThrough-behaviour
+Option Explicit
  
 Private WithEvents W As cWidgetBase
 Attribute W.VB_VarHelpID = -1
@@ -38,6 +38,10 @@ Public Property Get Widgets() As cWidgets: Set Widgets = W.Widgets: End Property
 Private Sub W_HitTest(ByVal x As Single, ByVal y As Single, HitResultHit As Boolean) 'ensure ClickThrough-behaviour in ImagePixels which are "fully Alpha"
   HitResultHit = False
   Dim Srf As cCairoSurface, Pxl() As Long
+  
+  ' this single line determines whether
+  'If W.Alpha = 0 Or W.Enabled = False Then Exit Sub
+  
   If Cairo.ImageList.Exists(W.ImageKey) And W.HoverColor <> -1 Then Set Srf = Cairo.ImageList(W.ImageKey) Else Exit Sub
   If Not Srf.BindToArrayLong(Pxl) Or W.Width = 0 Or W.Height = 0 Then Exit Sub
      HitResultHit = Pxl(x * Srf.Width / W.Width, y * Srf.Height / W.Height) 'only when the Pixel==0==FullAlpha, will HitResultHit be returned False
@@ -70,9 +74,9 @@ Private Sub W_Paint(CC As RC6.cCairoContext, ByVal xAbs As Single, ByVal yAbs As
 
    CC.RenderSurfaceContent Srf, 0, 0, W.Width, W.Height, , W.Alpha 'render the current W.ImageKey-Surface (as loaded priorily into the ImageList)
 
-  If W.MouseOver And W.HoverColor <> -1 Then 'render a colored, slightly blurred copy of the Srf with 25% Alpha (in case of being hovered)
-     CC.RenderSurfaceContent Srf.GaussianBlur(0.1, , True, W.HoverColor), 0, 0, W.Width, W.Height, , W.Tag
-  End If
+'  If W.MouseOver And W.HoverColor <> -1 Then 'render a colored, slightly blurred copy of the Srf with 25% Alpha (in case of being hovered)
+'     CC.RenderSurfaceContent Srf.GaussianBlur(0.1, , True, W.HoverColor), 0, 0, W.Width, W.Height, , W.Tag
+'  End If
 
     On Error GoTo 0
     Exit Sub

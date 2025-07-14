@@ -35,22 +35,49 @@ Attribute W.VB_VarHelpID = -1
 Private mTicking As Boolean ' property Ticking
 Private mLocked As Boolean ' property Locked
 Private mHidden As Boolean ' property Hidden
+Private mOpacity As String
+
+
 
 '---------------------------------------------------------------------------------------
-' Procedure : Class_Initialize
+' Procedure : initialisePrivateVars
+' Author    : beededea
+' Date      : 12/02/2025
+' Purpose   : initialise vars
+'---------------------------------------------------------------------------------------
+'
+Private Sub initialisePrivateVars()
+
+   On Error GoTo initialisePrivateVars_Error
+
+
+   ' pvtCurrentDateToDisplay = vbNullString
+
+   On Error GoTo 0
+   Exit Sub
+
+initialisePrivateVars_Error:
+
+    MsgBox "Error " & Err.Number & " (" & Err.Description & ") in procedure initialisePrivateVars of Class Module cwOverlay"
+End Sub
+
+'---------------------------------------------------------------------------------------
+' Procedure : Class_Initialize for cwOverlay
 ' Author    : olaf schmidt
 ' Date      : 31/07/2023
-' Purpose   :
+' Purpose   : Constructor (Initialise) set the inital values of private vars, set up the timers
 '---------------------------------------------------------------------------------------
 '
 Private Sub Class_Initialize()
-    Dim intervalValue As Integer: intervalValue = 0
+    
     On Error GoTo Class_Initialize_Error
+    
+    Call initialisePrivateVars
 
     Set W = Cairo.WidgetBase
         W.BackColor = -1  'we don't use any BackColor here, transparent
         W.ImplementsHitTest = True 'when at False, no HitTest-Event would be triggered
-
+    
    On Error GoTo 0
    Exit Sub
 
@@ -58,6 +85,7 @@ Class_Initialize_Error:
 
     MsgBox "Error " & Err.Number & " (" & Err.Description & ") in procedure Class_Initialize of Class Module cwOverlay"
 End Sub
+
 
 '---------------------------------------------------------------------------------------
 ' Procedure : Widget
@@ -98,11 +126,56 @@ Widgets_Error:
     MsgBox "Error " & Err.Number & " (" & Err.Description & ") in procedure Widgets of Class Module cwOverlay"
 End Property
 
+
+
+
 '---------------------------------------------------------------------------------------
-' Property : Locked
+' Property : opacity
 ' Author    : beededea
 ' Date      : 17/05/2023
 ' Purpose   :
+'---------------------------------------------------------------------------------------
+'
+Public Property Get opacity() As String
+   On Error GoTo opacityGet_Error
+
+    opacity = mOpacity
+
+   On Error GoTo 0
+   Exit Property
+
+opacityGet_Error:
+
+    MsgBox "Error " & Err.Number & " (" & Err.Description & ") in Property opacity of Class Module cwOverlay"
+End Property
+'---------------------------------------------------------------------------------------
+' Property  : opacity
+' Author    :
+' Date      : 09/05/2023
+' Purpose   :
+'---------------------------------------------------------------------------------------
+'
+Public Property Let opacity(ByVal newValue As String)
+    On Error GoTo opacityLet_Error
+
+    If mOpacity <> newValue Then mOpacity = newValue Else Exit Property
+        
+    On Error GoTo 0
+    Exit Property
+
+opacityLet_Error:
+
+    MsgBox "Error " & Err.Number & " (" & Err.Description & ") in Property opacity of Class Module cwOverlay"
+End Property
+
+
+
+
+'---------------------------------------------------------------------------------------
+' Property  : Locked
+' Author    : beededea
+' Date      : 17/05/2023
+' Purpose   : property used to store/set the lock state to lock the widget in place, the actual locking is done elsewhere
 '---------------------------------------------------------------------------------------
 '
 Public Property Get Locked() As Boolean
@@ -115,13 +188,13 @@ Public Property Get Locked() As Boolean
 
 LockedGet_Error:
 
-    MsgBox "Error " & Err.Number & " (" & Err.Description & ") in Property Locked of Class Module cwGlobe"
+    MsgBox "Error " & Err.Number & " (" & Err.Description & ") in Property Locked of Class Module cwoverlay"
 End Property
 '---------------------------------------------------------------------------------------
 ' Property  : Locked
 ' Author    : beededea
 ' Date      : 17/05/2023
-' Purpose   :
+' Purpose   : property used to store/set the lock state to lock the widget in place, the actual locking is done elsewhere
 '---------------------------------------------------------------------------------------
 '
 Public Property Let Locked(ByVal newValue As Boolean)
@@ -134,14 +207,16 @@ Public Property Let Locked(ByVal newValue As Boolean)
 
 LockedLet_Error:
 
-    MsgBox "Error " & Err.Number & " (" & Err.Description & ") in Property Locked of Class Module cwGlobe"
+    MsgBox "Error " & Err.Number & " (" & Err.Description & ") in Property Locked of Class Module cwoverlay"
 End Property
+
+
 
 '---------------------------------------------------------------------------------------
 ' Property  : Hidden
 ' Author    : beededea
 ' Date      : 17/05/2023
-' Purpose   :
+' Purpose   : property to determine (by value)  the set the hidden value of the whole widget
 '---------------------------------------------------------------------------------------
 '
 Public Property Get Hidden() As Boolean
@@ -154,13 +229,17 @@ Public Property Get Hidden() As Boolean
 
 HiddenGet_Error:
 
-    MsgBox "Error " & Err.Number & " (" & Err.Description & ") in Property Hidden of Class Module cwGlobe"
+    MsgBox "Error " & Err.Number & " (" & Err.Description & ") in Property Hidden of Class Module cwoverlay"
 End Property
+
+    
+
+
 '---------------------------------------------------------------------------------------
 ' Property  : Hidden
 ' Author    : beededea
 ' Date      : 10/05/2023
-' Purpose   :
+' Purpose   : property to determine (by value)  the set the hidden value of the whole widget
 '---------------------------------------------------------------------------------------
 '
 Public Property Let Hidden(ByVal newValue As Boolean)
@@ -182,8 +261,10 @@ Public Property Let Hidden(ByVal newValue As Boolean)
 
 HiddenLet_Error:
 
-    MsgBox "Error " & Err.Number & " (" & Err.Description & ") in Property Hidden of Class Module cwGlobe"
+    MsgBox "Error " & Err.Number & " (" & Err.Description & ") in Property Hidden of Class Module cwoverlay"
 End Property
+
+
 '
 '---------------------------------------------------------------------------------------------
 ' Procedure : W_HitTest
@@ -211,7 +292,7 @@ End Sub
 ' Procedure : W_Paint
 ' Author    : olaf schmidt
 ' Date      : 01/08/2023
-' Purpose   : this is run when the graphics are initially placed on the screen, refreshing and when a mouse cursor is interacting
+' Purpose   :
 '---------------------------------------------------------------------------------------
 '
 Private Sub W_Paint(CC As RC6.cCairoContext, ByVal xAbs As Single, ByVal yAbs As Single, ByVal dx_Aligned As Single, ByVal dy_Aligned As Single, UserObj As Object)
@@ -222,11 +303,11 @@ Private Sub W_Paint(CC As RC6.cCairoContext, ByVal xAbs As Single, ByVal yAbs As
     Dim someOpacity As Double: someOpacity = 0
     Dim cream As String: cream = vbNullString
     Dim thisVolumeLevel As Integer: thisVolumeLevel = 0
-       
+    
     On Error GoTo W_Paint_Error
     
     cream = RGB(235, 217, 179) ' cannot create a constant from an RGB value
-    
+       
     'set some Font- and ForeColor-Properties and draw some Text on the Widget
     With W
         .FontSize = 38
@@ -239,8 +320,8 @@ Private Sub W_Paint(CC As RC6.cCairoContext, ByVal xAbs As Single, ByVal yAbs As
         .SelectFontSettingsInto CC
         .Refresh
     End With
-
-    someOpacity = (Val(gblOpacity) / 100) * 0.75
+    
+    someOpacity = (Val(mOpacity) / 100) * 0.75
     thisVolumeLevel = Int(fVolume.SystemAudioLevel * 100)
     
     For I = 0 To cCollOverlayImages.Count - 1 ' this is the ExcludedPaths collection populated in cfVolume by duplicating collPSDNonUIElements.

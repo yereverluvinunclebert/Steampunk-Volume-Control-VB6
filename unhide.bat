@@ -1,1 +1,1 @@
-start "" "Steampunk Volume Control.exe" unhide
+start "" "Diesel Volume Control.exe" unhide
