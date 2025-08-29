@@ -1,7 +1,7 @@
 VERSION 5.00
 Object = "{BCE37951-37DF-4D69-A8A3-2CFABEE7B3CC}#1.0#0"; "CCRSlider.ocx"
 Begin VB.Form widgetPrefs 
-   Caption         =   "Diesel Volume Control Preferences"
+   Caption         =   "Steampunk Volume Control Preferences"
    ClientHeight    =   10545
    ClientLeft      =   60
    ClientTop       =   510
@@ -368,7 +368,7 @@ Begin VB.Form widgetPrefs
             Width           =   4590
          End
          Begin VB.CheckBox chkGenStartup 
-            Caption         =   "Run the Dieselpunk Volume Widget at Windows Startup "
+            Caption         =   "Run the Steampunk Volume Widget at Windows Startup "
             Height          =   465
             Left            =   1995
             TabIndex        =   165
@@ -416,7 +416,7 @@ Begin VB.Form widgetPrefs
             Width           =   1740
          End
          Begin VB.Label lblGeneral 
-            Caption         =   $"frmPrefs.frx":908C
+            Caption         =   $"frmPrefs.frx":7005
             Height          =   1035
             Index           =   5
             Left            =   1995
@@ -518,7 +518,7 @@ Begin VB.Form widgetPrefs
          MultiLine       =   -1  'True
          ScrollBars      =   2  'Vertical
          TabIndex        =   101
-         Text            =   "frmPrefs.frx":917D
+         Text            =   "frmPrefs.frx":70F6
          Top             =   2205
          Width           =   7935
       End
@@ -986,7 +986,7 @@ Begin VB.Form widgetPrefs
             Width           =   2490
          End
          Begin VB.Label lblConfiguration 
-            Caption         =   $"frmPrefs.frx":A134
+            Caption         =   $"frmPrefs.frx":80AD
             Height          =   915
             Index           =   0
             Left            =   1980
@@ -1177,7 +1177,7 @@ Begin VB.Form widgetPrefs
             Width           =   3285
          End
          Begin VB.Label lblFontsTab 
-            Caption         =   $"frmPrefs.frx":A1E8
+            Caption         =   $"frmPrefs.frx":8161
             Height          =   1710
             Index           =   0
             Left            =   1680
@@ -1353,7 +1353,7 @@ Begin VB.Form widgetPrefs
                Width           =   720
             End
             Begin VB.Label lblWindowLevel 
-               Caption         =   $"frmPrefs.frx":A326
+               Caption         =   $"frmPrefs.frx":829F
                Height          =   975
                Index           =   1
                Left            =   855
@@ -1389,7 +1389,7 @@ Begin VB.Form widgetPrefs
             Width           =   1830
          End
          Begin VB.Label lblWindowLevel 
-            Caption         =   $"frmPrefs.frx":A3C9
+            Caption         =   $"frmPrefs.frx":8342
             Height          =   1140
             Index           =   10
             Left            =   2235
@@ -1512,7 +1512,7 @@ Begin VB.Form widgetPrefs
                Width           =   3660
             End
             Begin VB.Label lblGitHub 
-               Caption         =   $"frmPrefs.frx":A4E0
+               Caption         =   $"frmPrefs.frx":8459
                ForeColor       =   &H8000000D&
                Height          =   915
                Left            =   1560
@@ -1522,7 +1522,7 @@ Begin VB.Form widgetPrefs
                Width           =   4935
             End
             Begin VB.Label lblDebug 
-               Caption         =   $"frmPrefs.frx":A5A7
+               Caption         =   $"frmPrefs.frx":8520
                Height          =   930
                Index           =   9
                Left            =   1545
@@ -1569,9 +1569,9 @@ Begin VB.Form widgetPrefs
          End
          Begin VB.ComboBox cmbDebug 
             Height          =   315
-            ItemData        =   "frmPrefs.frx":A64B
+            ItemData        =   "frmPrefs.frx":85C4
             Left            =   1530
-            List            =   "frmPrefs.frx":A64D
+            List            =   "frmPrefs.frx":85C6
             Style           =   2  'Dropdown List
             TabIndex        =   46
             ToolTipText     =   "Choose to set debug mode."
@@ -1830,7 +1830,7 @@ Begin VB.Form widgetPrefs
             Width           =   2115
          End
          Begin VB.Label lblPosition 
-            Caption         =   $"frmPrefs.frx":A64F
+            Caption         =   $"frmPrefs.frx":85C8
             Height          =   3435
             Index           =   12
             Left            =   5145
@@ -1850,7 +1850,7 @@ Begin VB.Form widgetPrefs
             Width           =   2040
          End
          Begin VB.Label lblPosition 
-            Caption         =   $"frmPrefs.frx":A821
+            Caption         =   $"frmPrefs.frx":879A
             Height          =   705
             Index           =   10
             Left            =   2250
@@ -1870,7 +1870,7 @@ Begin VB.Form widgetPrefs
             Width           =   2355
          End
          Begin VB.Label lblPosition 
-            Caption         =   $"frmPrefs.frx":A8C0
+            Caption         =   $"frmPrefs.frx":8839
             Height          =   3045
             Index           =   6
             Left            =   2265
